@@ -43,7 +43,16 @@ const i18n = {
     panel: "Panel",
     login: "Kirish",
     slotsLeft: "ta bo'sh joy bor",
-    searchPlaceholder: "Qidirish..."
+    searchPlaceholder: "Qidirish...",
+    catAll: "Barchasi",
+    catPark: "Parklar",
+    catRestaurant: "Ovqatlanish",
+    catMosque: "Masjid",
+    catAblution: "Tahoratxona",
+    catAttraction: "Atraksion",
+    catIceCream: "Muzqaymoq",
+    catPhoto: "Chiroyli joylar",
+    catShopping: "Do'kon"
   },
   en: {
     welcome: "Hello! Where do you want to go?",
@@ -62,7 +71,16 @@ const i18n = {
     panel: "Admin",
     login: "Login",
     slotsLeft: "slots available",
-    searchPlaceholder: "Search..."
+    searchPlaceholder: "Search...",
+    catAll: "All",
+    catPark: "Parks",
+    catRestaurant: "Dining",
+    catMosque: "Mosque",
+    catAblution: "Ablution",
+    catAttraction: "Attraction",
+    catIceCream: "Ice Cream",
+    catPhoto: "Beautiful Places",
+    catShopping: "Shop"
   },
   ru: {
     welcome: "Привет! Куда вы хотите отправиться?",
@@ -81,7 +99,16 @@ const i18n = {
     panel: "Панель",
     login: "Вход",
     slotsLeft: "свободных мест",
-    searchPlaceholder: "Поиск..."
+    searchPlaceholder: "Поиск...",
+    catAll: "Все",
+    catPark: "Парки",
+    catRestaurant: "Питание",
+    catMosque: "Мечеть",
+    catAblution: "Омовение",
+    catAttraction: "Аттракцион",
+    catIceCream: "Мороженое",
+    catPhoto: "Красивые места",
+    catShopping: "Магазин"
   }
 };
 
@@ -162,15 +189,15 @@ export default function Tourist() {
   })();
 
   const categories = [
-    { id: 'all', label: 'Barchasi', icon: '📍', color: '#FF4D6D' },
-    { id: 'park', label: 'Parklar', icon: '🌳', color: '#00C896' },
-    { id: 'restaurant', label: 'Ovqatlanish', icon: '🍲', color: '#FFAA00' },
-    { id: 'mosque', label: 'Masjid', icon: '🕌', color: '#00A3FF' },
-    { id: 'ablution', label: 'Tahoratxona', icon: '💧', color: '#00D1FF' },
-    { id: 'attraction', label: 'Atraksion', icon: '🎡', color: '#9D50BB' },
-    { id: 'ice_cream', label: 'Muzqaymoq', icon: '🍦', color: '#F8A5C2' },
-    { id: 'photo', label: 'Chiroyli joylar', icon: '📸', color: '#6D5DFE' },
-    { id: 'shopping', label: 'Do\'kon', icon: '🛒', color: '#778CA3' },
+    { id: 'all', label: t.catAll, icon: '📍', color: '#FF4D6D' },
+    { id: 'park', label: t.catPark, icon: '🌳', color: '#00C896' },
+    { id: 'restaurant', label: t.catRestaurant, icon: '🍲', color: '#FFAA00' },
+    { id: 'mosque', label: t.catMosque, icon: '🕌', color: '#00A3FF' },
+    { id: 'ablution', label: t.catAblution, icon: '💧', color: '#00D1FF' },
+    { id: 'attraction', label: t.catAttraction, icon: '🎡', color: '#9D50BB' },
+    { id: 'ice_cream', label: t.catIceCream, icon: '🍦', color: '#F8A5C2' },
+    { id: 'photo', label: t.catPhoto, icon: '📸', color: '#6D5DFE' },
+    { id: 'shopping', label: t.catShopping, icon: '🛒', color: '#778CA3' },
   ];
 
   const handleGo = async (dest) => {
@@ -268,44 +295,11 @@ export default function Tourist() {
                 ))}
               </div>
 
-              {/* Dynamic Action Buttons */}
-              <div className="flex items-center gap-2 border-l border-slate-100 pl-3">
-                {role ? (
-                  <>
-                    <button onClick={() => navigate(role === 'super_admin' ? '/super-admin' : '/admin')} className="px-4 py-2 text-[10px] font-black uppercase text-slate-600 hover:bg-slate-50 rounded-xl transition-all">
-                      {t.panel}
-                    </button>
-                    <button onClick={handleLogout} className="p-2.5 text-rose-500 hover:bg-rose-50 rounded-xl transition-all" title="Chiqish">
-                      <LogOut size={20} />
-                    </button>
-                  </>
-                ) : (
-                  <button onClick={() => navigate('/login')} className="flex items-center gap-2 px-4 py-2 text-[11px] font-black uppercase text-slate-500 hover:bg-slate-50 rounded-xl transition-all">
-                    <span>{t.login || 'Kirish'}</span>
-                    <User size={18} />
-                  </button>
-                )}
-              </div>
+
             </div>
           </div>
 
-          {/* Voice Assistant Greeting */}
-          <div className="pointer-events-auto">
-            <div className="glass-card p-5 md:p-7 flex items-center gap-6 shadow-2xl border-b-8 border-rose-500/30 animate-slide-down">
-              <div className="relative">
-                <div className="absolute inset-0 bg-rose-500 rounded-full blur-xl opacity-20 animate-pulse" />
-                <div className="relative bg-rose-500 text-white p-5 rounded-full shadow-lg shadow-rose-500/40 transform hover:scale-110 transition-all">
-                  <Mic size={32} strokeWidth={2.5} />
-                </div>
-              </div>
-              <div className="flex-1">
-                <p className="text-xl md:text-2xl font-black text-slate-900 tracking-tight leading-none">
-                  {message}
-                </p>
-                <p className="text-[10px] uppercase font-black tracking-[0.2em] text-slate-300 mt-2">Ovozli yordamchi faol</p>
-              </div>
-            </div>
-          </div>
+
         </div>
       </div>
 
@@ -379,7 +373,7 @@ export default function Tourist() {
                       {typeof item.name === 'object' ? (item.name[lang] || item.name.uz) : item.name}
                     </p>
                     <p className={`text-[10px] font-bold uppercase ${activeTab === 'parking' ? (Number(item.freeSlots) > 0 ? 'text-green-500' : 'text-red-500') : 'text-gray-400'}`}>
-                      {activeTab === 'parking' ? (Number(item.freeSlots) > 0 ? `${item.freeSlots} bo'sh` : t.full) : (item.category || 'Joy')}
+                      {activeTab === 'parking' ? (Number(item.freeSlots) > 0 ? `${item.freeSlots} ${t.slotsLeft}` : t.full) : (categories.find(c => c.id === item.category)?.label || t.places)}
                     </p>
                   </div>
                   <ChevronRight size={16} className="text-gray-200" />
